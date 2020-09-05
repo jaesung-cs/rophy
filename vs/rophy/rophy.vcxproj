@@ -28,6 +28,8 @@
     <ClInclude Include="..\..\src\rophy\utils\printable.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_exception.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_extension_layers.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_pipeline.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_image_view.h" />
@@ -58,6 +60,8 @@
     <ClCompile Include="..\..\src\rophy\engine.cc" />
     <ClCompile Include="..\..\src\rophy\main.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_extension_layers.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_pipeline.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_image_view.cc" />

@@ -12,6 +12,7 @@
 #include <rophy/vk/vk_pipeline_layout_creator.h>
 #include <rophy/vk/vk_render_pass_creator.h>
 #include <rophy/vk/vk_graphics_pipeline_creator.h>
+#include <rophy/vk/vk_framebuffer_creator.h>
 
 namespace rophy
 {
@@ -92,6 +93,16 @@ void EngineWindow::Initialize()
   graphics_pipeline_creator.SetPipelineLayout(pipeline_layout_);
   graphics_pipeline_creator.SetRenderPass(render_pass_);
   graphics_pipeline_ = graphics_pipeline_creator.Create();
+
+  for (auto image_view : swapchain_image_views_)
+  {
+    vk::FramebufferCreator framebuffer_creator{ device_ };
+    framebuffer_creator.SetRenderPass(render_pass_);
+    framebuffer_creator.AddImageView(image_view);
+    framebuffer_creator.SetExtent(Width(), Height());
+    auto swapchain_framebuffer = framebuffer_creator.Create();
+    swapchain_framebuffers_.push_back(swapchain_framebuffer);
+  }
 }
 }
 }

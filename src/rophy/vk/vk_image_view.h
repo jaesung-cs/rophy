@@ -29,6 +29,11 @@ public:
 
   void Destroy() override;
 
+  operator VkImageView ()
+  {
+    return image_view_;
+  }
+
 protected:
   void Print(std::ostream& out) const override;
 

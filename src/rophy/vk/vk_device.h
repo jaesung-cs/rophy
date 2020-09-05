@@ -21,6 +21,7 @@ class SwapchainCreator;
 class GraphicsPipelineCreator;
 class PipelineLayoutCreator;
 class RenderPassCreator;
+class FramebufferCreator;
 
 namespace impl
 {
@@ -32,6 +33,7 @@ class DeviceImpl : public vk::Object, public utils::Printable
   friend class GraphicsPipelineCreator;
   friend class PipelineLayoutCreator;
   friend class RenderPassCreator;
+  friend class FramebufferCreator;
 
 public:
   DeviceImpl() = delete;
