@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-2019 LunarG, Inc. -->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{96d2f099-5779-484e-bef7-23d550d68723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vk">
+      <UniqueIdentifier>{1d2328d7-a5f6-418d-9ad5-d7f95a5e5b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\window">
+      <UniqueIdentifier>{4b7145d6-a652-4faf-8274-fae9c40e1052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
+      <UniqueIdentifier>{8b36eed6-b618-4b94-9bb1-2516a6bad989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\glsl">
+      <UniqueIdentifier>{bfc2cb58-b7cf-4d06-bd6d-f828bab45f86}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\rophy\engine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\window\base_window.h">
+      <Filter>src\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\window\engine_window.h">
+      <Filter>src\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_instance.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\window\window_manager.h">
+      <Filter>src\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\math\matrix.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\math\vector.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\glsl\vec.h">
+      <Filter>src\glsl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\glsl\mat.h">
+      <Filter>src\glsl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_exception.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_extension_layers.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_instance_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\rophy\engine.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\main.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\window\base_window.cc">
+      <Filter>src\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\window\engine_window.cc">
+      <Filter>src\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_instance.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\window\window_manager.cc">
+      <Filter>src\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_extension_layers.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_instance_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
