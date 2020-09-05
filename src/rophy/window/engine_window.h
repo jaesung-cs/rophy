@@ -4,6 +4,7 @@
 #include "base_window.h"
 
 #include <rophy/vk/vk_instance.h>
+#include <rophy/vk/vk_device.h>
 
 namespace rophy
 {
@@ -22,6 +23,7 @@ public:
 
 private:
   vk::Instance vk_instance_;
+  vk::Device vk_device_;
 };
 }
 }

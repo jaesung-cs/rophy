@@ -1,12 +1,5 @@
 #include <rophy/vk/vk_instance.h>
 
-#include <iostream>
-#include <algorithm>
-
-#include <GLFW/glfw3.h>
-
-#include <rophy/vk/vk_exception.h>
-
 namespace rophy
 {
 namespace vk
@@ -25,16 +18,35 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 }
 }
 
-InstanceImpl::InstanceImpl() = default;
+InstanceImpl::InstanceImpl(VkInstance handle)
+{
+  instance_ = handle;
 
-InstanceImpl::~InstanceImpl()
+  uint32_t device_count = 0;
+  vkEnumeratePhysicalDevices(instance_, &device_count, nullptr);
+  std::vector<VkPhysicalDevice> devices(device_count);
+  vkEnumeratePhysicalDevices(instance_, &device_count, devices.data());
+
+  for (auto device : devices)
+  {
+    auto physical_device = std::make_shared<impl::PhysicalDeviceImpl>(device);
+    AddChildObject(physical_device);
+    physical_devices_.push_back(physical_device);
+  }
+}
+
+InstanceImpl::~InstanceImpl() = default;
+
+void InstanceImpl::Destroy()
 {
   if (debug_messenger_ != nullptr)
   {
     DestroyDebugUtilsMessengerEXT(instance_, debug_messenger_, nullptr);
+    debug_messenger_ = nullptr;
   }
 
   vkDestroyInstance(instance_, nullptr);
+  instance_ = nullptr;
 }
 }
 }

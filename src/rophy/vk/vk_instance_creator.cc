@@ -17,8 +17,8 @@ VKAPI_ATTR VkBool32 VKAPI_CALL debug_callback(
   VkDebugUtilsMessageSeverityFlagBitsEXT message_severity,
   VkDebugUtilsMessageTypeFlagsEXT message_type,
   const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
-  void* user_data) {
-
+  void* user_data)
+{
   std::cerr << "Validation layer: " << callback_data->pMessage << std::endl;
 
   return VK_FALSE;
@@ -103,25 +103,24 @@ Instance InstanceCreator::Create()
   create_info_.enabledLayerCount = static_cast<uint32_t>(layer_names.size());
   create_info_.ppEnabledLayerNames = layer_names.data();
 
-  auto instance = std::make_shared<impl::InstanceImpl>();
-
   if (IsValidationLayerEnabled())
-  {
     create_info_.pNext = (VkDebugUtilsMessengerCreateInfoEXT*)&debug_messenger_create_info_;
-  }
 
+  // Verbose log
+  Print(std::cout);
+  std::cout << std::endl;
+
+  VkInstance instance_handle;
   VkResult result;
-  if ((result = vkCreateInstance(&create_info_, nullptr, &instance->instance_)) != VK_SUCCESS)
-  {
-    throw vk::Exception("failed to create instance!", result);
-  }
+  if ((result = vkCreateInstance(&create_info_, nullptr, &instance_handle)) != VK_SUCCESS)
+    throw vk::Exception("Failed to create instance.", result);
+
+  auto instance = std::make_shared<impl::InstanceImpl>(instance_handle);
 
   if (IsValidationLayerEnabled())
   {
-    if (CreateDebugUtilsMessengerEXT(*instance, &debug_messenger_create_info_, nullptr, &instance->DebugMessenger()) != VK_SUCCESS)
-    {
-      throw std::runtime_error("failed to set up debug messenger!");
-    }
+    if ((result = CreateDebugUtilsMessengerEXT(*instance, &debug_messenger_create_info_, nullptr, &instance->DebugMessenger())) != VK_SUCCESS)
+      throw vk::Exception("Failed to set up debug messenger.", result);
   }
 
   return instance;
@@ -130,14 +129,14 @@ Instance InstanceCreator::Create()
 void InstanceCreator::Print(std::ostream& out) const
 {
   out
-    << "Instance Create Info" << std::endl
-    << "  enabledExtensionCount  : " << extension_names_.size() << std::endl
+    << "Instance create info" << std::endl
+    << "  enabledExtensionCount  : " << create_info_.enabledExtensionCount << std::endl
     << "  ppEnabledExtensionNames: " << std::endl;
-  PrintStrings(out, extension_names_, 4);
+  PrintStrings(out, create_info_.ppEnabledExtensionNames, create_info_.enabledExtensionCount, 4);
   out
-    << "  enabledLayerCount      : " << layer_names_.size() << std::endl
+    << "  enabledLayerCount      : " << create_info_.enabledLayerCount << std::endl
     << "  ppEnabledLayerNames    : " << std::endl;
-  PrintStrings(out, layer_names_, 4);
+  PrintStrings(out, create_info_.ppEnabledLayerNames, create_info_.enabledLayerCount, 4);
   out << "  pApplicationInfo" << std::endl;
 
   // Application

@@ -4,13 +4,13 @@
 #include <vulkan/vulkan.h>
 
 #include <rophy/vk/vk_instance.h>
-#include <rophy/vk/vk_creator.h>
+#include <rophy/utils/printable.h>
 
 namespace rophy
 {
 namespace vk
 {
-class InstanceCreator : public Creator
+class InstanceCreator : public utils::Printable
 {
 public:
   InstanceCreator();

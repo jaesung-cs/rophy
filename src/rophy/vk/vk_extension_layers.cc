@@ -17,6 +17,18 @@ ExtensionLayers::ExtensionLayers()
   vkEnumerateInstanceLayerProperties(&layer_count_, layers_.data());
 }
 
+ExtensionLayers::ExtensionLayers(VkPhysicalDevice physical_device)
+  : is_device_(true)
+{
+  vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &extension_count_, nullptr);
+  extensions_.resize(extension_count_);
+  vkEnumerateDeviceExtensionProperties(physical_device, nullptr, &extension_count_, extensions_.data());
+
+  vkEnumerateDeviceLayerProperties(physical_device, &layer_count_, nullptr);
+  layers_.resize(layer_count_);
+  vkEnumerateDeviceLayerProperties(physical_device, &layer_count_, layers_.data());
+}
+
 ExtensionLayers::~ExtensionLayers()
 {
 }
@@ -33,7 +45,10 @@ void ExtensionLayers::PrintLayers() const
 
 void ExtensionLayers::PrintExtensions(std::ostream& out) const
 {
-  out << "Extensions:" << std::endl;
+  if (is_device_)
+    out << "Device extensions:" << std::endl;
+  else
+    out << "Instance extensions:" << std::endl;
 
   for (const auto& extension : extensions_)
     out << "  " << extension.extensionName << std::endl;
@@ -41,14 +56,17 @@ void ExtensionLayers::PrintExtensions(std::ostream& out) const
 
 void ExtensionLayers::PrintLayers(std::ostream& out) const
 {
-  out << "Layers:" << std::endl;
+  if (is_device_)
+    out << "Device layers:" << std::endl;
+  else
+    out << "Instance layers:" << std::endl;
 
   for (const auto& layer : layers_)
     out << "  " << layer.layerName << ": " << layer.description << std::endl;
 }
 
 /*
-Extensions:
+Instance extensions:
   VK_KHR_device_group_creation
   VK_KHR_external_fence_capabilities
   VK_KHR_external_memory_capabilities
@@ -62,8 +80,7 @@ Extensions:
   VK_EXT_debug_utils
   VK_EXT_swapchain_colorspace
   VK_NV_external_memory_capabilities
-
-Layers:
+Instance layers:
   VK_LAYER_NV_optimus: NVIDIA Optimus layer
   VK_LAYER_OBS_HOOK: Open Broadcaster Software hook
   VK_LAYER_NV_nsight: NVIDIA Nsight Visual Studio Edition interception layer
