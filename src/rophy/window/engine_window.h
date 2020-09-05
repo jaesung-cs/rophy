@@ -16,6 +16,7 @@
 #include <rophy/vk/vk_pipeline.h>
 #include <rophy/vk/vk_framebuffer.h>
 #include <rophy/vk/vk_command_pool.h>
+#include <rophy/vk/vk_command_buffer.h>
 
 namespace rophy
 {
@@ -45,6 +46,7 @@ private:
   vk::Pipeline graphics_pipeline_;
   std::vector<vk::Framebuffer> swapchain_framebuffers_;
   vk::CommandPool command_pool_;
+  std::vector<vk::CommandBuffer> command_buffers_;
 };
 }
 }

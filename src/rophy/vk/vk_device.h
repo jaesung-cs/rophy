@@ -23,6 +23,7 @@ class PipelineLayoutCreator;
 class RenderPassCreator;
 class FramebufferCreator;
 class CommandPoolCreator;
+class CommandBufferAllocator;
 
 namespace impl
 {
@@ -36,6 +37,7 @@ class DeviceImpl : public vk::Object, public utils::Printable
   friend class RenderPassCreator;
   friend class FramebufferCreator;
   friend class CommandPoolCreator;
+  friend class CommandBufferAllocator;
 
 public:
   DeviceImpl() = delete;

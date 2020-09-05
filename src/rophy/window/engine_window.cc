@@ -14,6 +14,7 @@
 #include <rophy/vk/vk_graphics_pipeline_creator.h>
 #include <rophy/vk/vk_framebuffer_creator.h>
 #include <rophy/vk/vk_command_pool_creator.h>
+#include <rophy/vk/vk_command_buffer_allocator.h>
 
 namespace rophy
 {
@@ -53,7 +54,7 @@ void EngineWindow::Initialize()
   device_creator.AddValidationLayer();
   device_creator.AddSwapchainExtension();
   device_creator.AddSurfaceQueue(surface_);
-  device_creator.AddGraphicsQueue(2);
+  device_creator.AddGraphicsQueue();
   device_ = device_creator.Create();
   std::cout << *device_ << std::endl;
 
@@ -108,6 +109,21 @@ void EngineWindow::Initialize()
   vk::CommandPoolCreator command_pool_creator{ device_ };
   command_pool_creator.SetQueueFamilyIndex(0); // TODO: pass queue family class
   command_pool_ = command_pool_creator.Create();
+
+  vk::CommandBufferAllocator command_buffer_allocator{ device_, command_pool_ };
+  command_buffers_ = command_buffer_allocator.Allocate(swapchain_framebuffers_.size());
+
+  for (int i = 0; i < command_buffers_.size(); i++)
+  {
+    auto command_buffer = command_buffers_[i];
+
+    command_buffer->Begin();
+    command_buffer->CmdBeginRenderPass(render_pass_, swapchain_framebuffers_[i], Width(), Height());
+    command_buffer->CmdBindGraphicsPipeline(graphics_pipeline_);
+    command_buffer->CmdDraw(3, 1, 0, 0);
+    command_buffer->CmdEndRenderPass();
+    command_buffer->End();
+  }
 }
 }
 }

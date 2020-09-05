@@ -136,6 +136,12 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_command_pool_creator.h">
       <Filter>src\vk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_command_buffer.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_command_buffer_allocator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc">
@@ -232,6 +238,12 @@
       <Filter>src\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_pool_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_command_buffer.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_command_buffer_allocator.cc">
       <Filter>src\vk</Filter>
     </ClCompile>
   </ItemGroup>

@@ -29,6 +29,11 @@ public:
 
   void Destroy() override;
 
+  operator VkPipeline ()
+  {
+    return pipeline_;
+  }
+
 protected:
   void Print(std::ostream& out) const override;
 
