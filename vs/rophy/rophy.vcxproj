@@ -26,6 +26,8 @@
     <ClInclude Include="..\..\src\rophy\math\matrix.h" />
     <ClInclude Include="..\..\src\rophy\math\vector.h" />
     <ClInclude Include="..\..\src\rophy\utils\printable.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_command_pool.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_command_pool_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_exception.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_extension_layers.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer.h" />
@@ -59,6 +61,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc" />
     <ClCompile Include="..\..\src\rophy\main.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_command_pool.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_command_pool_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_extension_layers.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer_creator.cc" />

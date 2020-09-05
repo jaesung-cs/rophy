@@ -15,6 +15,7 @@
 #include <rophy/vk/vk_render_pass.h>
 #include <rophy/vk/vk_pipeline.h>
 #include <rophy/vk/vk_framebuffer.h>
+#include <rophy/vk/vk_command_pool.h>
 
 namespace rophy
 {
@@ -43,6 +44,7 @@ private:
   vk::RenderPass render_pass_;
   vk::Pipeline graphics_pipeline_;
   std::vector<vk::Framebuffer> swapchain_framebuffers_;
+  vk::CommandPool command_pool_;
 };
 }
 }

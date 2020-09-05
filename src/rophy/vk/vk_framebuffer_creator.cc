@@ -36,7 +36,7 @@ void FramebufferCreator::SetExtent(int width, int height)
 Framebuffer FramebufferCreator::Create()
 {
   // Attachments
-  create_info_.attachmentCount = attachments_.size();
+  create_info_.attachmentCount = static_cast<uint32_t>(attachments_.size());
   create_info_.pAttachments = attachments_.data();
 
   // Verbose log

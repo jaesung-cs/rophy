@@ -13,6 +13,7 @@
 #include <rophy/vk/vk_render_pass_creator.h>
 #include <rophy/vk/vk_graphics_pipeline_creator.h>
 #include <rophy/vk/vk_framebuffer_creator.h>
+#include <rophy/vk/vk_command_pool_creator.h>
 
 namespace rophy
 {
@@ -103,6 +104,10 @@ void EngineWindow::Initialize()
     auto swapchain_framebuffer = framebuffer_creator.Create();
     swapchain_framebuffers_.push_back(swapchain_framebuffer);
   }
+
+  vk::CommandPoolCreator command_pool_creator{ device_ };
+  command_pool_creator.SetQueueFamilyIndex(0); // TODO: pass queue family class
+  command_pool_ = command_pool_creator.Create();
 }
 }
 }
