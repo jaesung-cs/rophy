@@ -6,6 +6,7 @@
 #include <rophy/vk/vk_device.h>
 #include <rophy/vk/vk_physical_device.h>
 #include <rophy/vk/vk_queue.h>
+#include <rophy/vk/vk_surface.h>
 #include <rophy/utils/printable.h>
 
 namespace rophy
@@ -19,6 +20,8 @@ private:
   {
     int type = QueueType::ANY;
     int count = 1;
+    bool is_surface = false;
+    Surface surface;
   };
 
 public:
@@ -29,11 +32,13 @@ public:
   ~DeviceCreator();
 
   void AddExtension(const std::string& extension_name);
+  void AddSwapchainExtension();
 
   void AddLayer(const std::string& layer_name);
   void AddValidationLayer();
 
   void AddGraphicsQueue(int num_queues = 1);
+  void AddSurfaceQueue(Surface surface, int num_queues = 1);
 
   Device Create();
 

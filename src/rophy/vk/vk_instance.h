@@ -26,7 +26,7 @@ class InstanceImpl : public vk::Object
 public:
   InstanceImpl() = delete;
 
-  explicit InstanceImpl(VkInstance handle);
+  explicit InstanceImpl(VkInstance instance);
 
   ~InstanceImpl() override;
 

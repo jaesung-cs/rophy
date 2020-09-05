@@ -59,6 +59,12 @@ public:
     return glsl::vec2(width_, height_);
   }
 
+protected:
+  auto GetWindow() const
+  {
+    return window_;
+  }
+
 private:
   GLFWwindow* window_ = nullptr;
 

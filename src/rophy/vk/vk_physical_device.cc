@@ -27,7 +27,7 @@ PhysicalDeviceImpl::PhysicalDeviceImpl(VkPhysicalDevice handle)
 
 PhysicalDeviceImpl::~PhysicalDeviceImpl() = default;
 
-int PhysicalDeviceImpl::GetQueueFamilyIndex(BitFlags type)
+int PhysicalDeviceImpl::GetQueueFamilyIndex(BitFlags type) const
 {
   BitFlags vk_flags = 0;
 
@@ -41,6 +41,19 @@ int PhysicalDeviceImpl::GetQueueFamilyIndex(BitFlags type)
   for (int i = 0; i < queue_families_.size(); i++)
   {
     if ((queue_families_[i].queueFlags & vk_flags) == vk_flags)
+      return i;
+  }
+
+  return -1;
+}
+
+int PhysicalDeviceImpl::GetSurfaceSupportedQueueFamilyIndex(Surface surface) const
+{
+  for (int i = 0; i < queue_families_.size(); i++)
+  {
+    VkBool32 supported = false;
+    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device_, i, *surface, &supported);
+    if (supported)
       return i;
   }
 

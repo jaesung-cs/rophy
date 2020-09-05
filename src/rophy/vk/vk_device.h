@@ -8,6 +8,7 @@
 #include <vulkan/vulkan.h>
 
 #include <rophy/vk/vk_queue.h>
+#include <rophy/utils/printable.h>
 
 namespace rophy
 {
@@ -15,7 +16,7 @@ namespace vk
 {
 namespace impl
 {
-class DeviceImpl : public vk::Object
+class DeviceImpl : public vk::Object, public utils::Printable
 {
 public:
   DeviceImpl() = delete;
@@ -25,6 +26,9 @@ public:
   ~DeviceImpl();
 
   void Destroy() override;
+
+protected:
+  void Print(std::ostream& out) const override;
 
 private:
   VkDevice device_ = nullptr;

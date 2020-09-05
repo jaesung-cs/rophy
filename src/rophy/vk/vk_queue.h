@@ -7,6 +7,8 @@
 
 #include <vulkan/vulkan.h>
 
+#include <rophy/utils/printable.h>
+
 namespace rophy
 {
 namespace vk
@@ -23,7 +25,7 @@ enum QueueType
 
 namespace impl
 {
-class QueueImpl : public vk::Object
+class QueueImpl : public vk::Object, public utils::Printable
 {
 public:
   QueueImpl() = delete;
@@ -32,12 +34,15 @@ public:
 
   ~QueueImpl();
 
+protected:
+  void Print(std::ostream& out) const override;
+
 private:
   VkQueue queue_ = nullptr;
 };
 }
 
-using Queue = ::std::shared_ptr<impl::QueueImpl>;
+using Queue = std::shared_ptr<impl::QueueImpl>;
 }
 }
 

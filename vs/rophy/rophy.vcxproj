@@ -35,6 +35,8 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_object.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_physical_device.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_queue.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_surface.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_surface_creator.h" />
     <ClInclude Include="..\..\src\rophy\window\base_window.h" />
     <ClInclude Include="..\..\src\rophy\window\engine_window.h" />
     <ClInclude Include="..\..\src\rophy\window\window_manager.h" />
@@ -50,6 +52,8 @@
     <ClCompile Include="..\..\src\rophy\vk\vk_object.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_physical_device.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_queue.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_surface.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_surface_creator.cc" />
     <ClCompile Include="..\..\src\rophy\window\base_window.cc" />
     <ClCompile Include="..\..\src\rophy\window\engine_window.cc" />
     <ClCompile Include="..\..\src\rophy\window\window_manager.cc" />

@@ -22,8 +22,9 @@ public:
   void Initialize() override;
 
 private:
-  vk::Instance vk_instance_;
-  vk::Device vk_device_;
+  vk::Instance instance_;
+  vk::Device device_;
+  vk::Surface surface_;
 };
 }
 }

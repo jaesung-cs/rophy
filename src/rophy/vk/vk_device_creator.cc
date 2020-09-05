@@ -28,6 +28,11 @@ void DeviceCreator::AddExtension(const std::string& extension_name)
   extension_names_.push_back(extension_name);
 }
 
+void DeviceCreator::AddSwapchainExtension()
+{
+  AddExtension(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+}
+
 void DeviceCreator::AddLayer(const std::string& layer_name)
 {
   layer_names_.push_back(layer_name);
@@ -47,24 +52,46 @@ void DeviceCreator::AddGraphicsQueue(int num_queues)
   queue_create_requests_.push_back(request);
 }
 
+void DeviceCreator::AddSurfaceQueue(Surface surface, int num_queues)
+{
+  QueueCreateRequest request;
+  request.type = QueueType::ANY;
+  request.count = num_queues;
+  request.is_surface = true;
+  request.surface = surface;
+
+  queue_create_requests_.push_back(request);
+}
+
 Device DeviceCreator::Create()
 {
   // Queues
-  std::vector<int> queue_counts(physical_device_->NumQueueFamilies(), 0);
   queue_create_infos_.clear();
+
+  std::vector<int> queue_counts(physical_device_->NumQueueFamilies(), 0);
   for (auto queue_create_request : queue_create_requests_)
   {
-    auto queue_family_index = physical_device_->GetQueueFamilyIndex(queue_create_request.type);
-    auto queue_count = queue_create_request.count;
+    int queue_family_index = 0;
+    if (queue_create_request.is_surface)
+      queue_family_index = physical_device_->GetSurfaceSupportedQueueFamilyIndex(queue_create_request.surface);
+    else
+      queue_family_index = physical_device_->GetQueueFamilyIndex(queue_create_request.type);
 
-    VkDeviceQueueCreateInfo queue_create_info{};
-    queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queue_create_info.queueFamilyIndex = queue_family_index;
-    queue_create_info.queueCount = queue_create_request.count;
-    queue_create_info.pQueuePriorities = queue_priorities_.data();
-    queue_create_infos_.push_back(queue_create_info);
+    queue_counts[queue_family_index] += queue_create_request.count;
+  }
 
-    queue_counts[queue_family_index] += queue_count;
+  for (int i = 0; i < queue_counts.size(); i++)
+  {
+    const auto& queue_count = queue_counts[i];
+    if (queue_count > 0)
+    {
+      VkDeviceQueueCreateInfo queue_create_info{};
+      queue_create_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+      queue_create_info.queueFamilyIndex = i;
+      queue_create_info.queueCount = queue_count;
+      queue_create_info.pQueuePriorities = queue_priorities_.data();
+      queue_create_infos_.push_back(queue_create_info);
+    }
   }
 
   create_info_.pQueueCreateInfos = queue_create_infos_.data();

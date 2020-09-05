@@ -11,21 +11,55 @@ namespace utils
 {
 class Printable
 {
+private:
+  static bool IsEndline(char c)
+  {
+    return c == '\n';
+  }
+
 protected:
+  static void PrintString(std::ostream& out, const std::string& s, int indent = 0)
+  {
+    auto indent_string = std::string(indent, ' ');
+
+    bool line_begin = true;
+    for (auto c : s)
+    {
+      if (IsEndline(c))
+      {
+        out << std::endl;
+        line_begin = true;
+      }
+      else
+      {
+        if (line_begin)
+        {
+          line_begin = false;
+          out << indent_string;
+        }
+        out << c;
+      }
+    }
+  }
+
   static void PrintStrings(std::ostream& out, const char* const* p, int count, int indent = 0)
   {
     auto indent_string = std::string(indent, ' ');
 
     for (int i = 0; i < count; i++)
-      out << indent_string << p[i] << std::endl;
+    {
+      PrintString(out, p[i], indent);
+      out << std::endl;
+    }
   }
 
   static void PrintStrings(std::ostream& out, const std::vector<std::string>& s, int indent = 0)
   {
-    auto indent_string = std::string(indent, ' ');
-
     for (const auto& str : s)
-      out << indent_string << str << std::endl;
+    {
+      PrintString(out, str, indent);
+      out << std::endl;
+    }
   }
 
 public:

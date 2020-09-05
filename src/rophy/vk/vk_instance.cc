@@ -18,10 +18,9 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 }
 }
 
-InstanceImpl::InstanceImpl(VkInstance handle)
+InstanceImpl::InstanceImpl(VkInstance instance)
+  : instance_(instance)
 {
-  instance_ = handle;
-
   uint32_t device_count = 0;
   vkEnumeratePhysicalDevices(instance_, &device_count, nullptr);
   std::vector<VkPhysicalDevice> devices(device_count);

@@ -5,6 +5,7 @@
 #include <rophy/vk/vk_extension_layers.h>
 #include <rophy/vk/vk_instance_creator.h>
 #include <rophy/vk/vk_device_creator.h>
+#include <rophy/vk/vk_surface_creator.h>
 
 namespace rophy
 {
@@ -22,7 +23,7 @@ EngineWindow::EngineWindow(int width, int height)
 
 EngineWindow::~EngineWindow()
 {
-  vk_instance_ = nullptr;
+  instance_ = nullptr;
 }
 
 void EngineWindow::Initialize()
@@ -33,15 +34,22 @@ void EngineWindow::Initialize()
   vk::InstanceCreator instance_creator;
   instance_creator.AddValidationLayer();
   instance_creator.AddGlfwRequiredExtensions();
-  vk_instance_ = instance_creator.Create();
+  instance_ = instance_creator.Create();
 
-  auto physical_device = vk_instance_->GetPhysicalDevice(0);
+  auto physical_device = instance_->GetPhysicalDevice(0);
   std::cout << *physical_device << std::endl;
+
+  vk::SurfaceCreator surface_creator{ instance_, GetWindow() };
+  surface_ = surface_creator.Create();
 
   vk::DeviceCreator device_creator{ physical_device };
   device_creator.AddValidationLayer();
+  device_creator.AddSwapchainExtension();
+  device_creator.AddSurfaceQueue(surface_);
   device_creator.AddGraphicsQueue(2);
-  vk_device_ = device_creator.Create();
+  device_ = device_creator.Create();
+
+  std::cout << *device_ << std::endl;
 }
 }
 }

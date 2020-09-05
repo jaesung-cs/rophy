@@ -1,5 +1,8 @@
 #include <rophy/vk/vk_device.h>
 
+#include <sstream>
+#include <iomanip>
+
 namespace rophy
 {
 namespace vk
@@ -26,6 +29,22 @@ DeviceImpl::~DeviceImpl() = default;
 void DeviceImpl::Destroy()
 {
   vkDestroyDevice(device_, nullptr);
+}
+
+void DeviceImpl::Print(std::ostream& out) const
+{
+  out
+    << "VkDevice" << std::endl
+    << "  Queues:" << std::endl;
+
+  std::vector<std::string> queue_strings;
+  for (int i = 0; i < queues_.size(); i++)
+  {
+    std::ostringstream sout;
+    sout << "Index " << std::setw(2) << i << ": " << *queues_[i];
+    queue_strings.emplace_back(sout.str());
+  }
+  PrintStrings(out, queue_strings, 4);
 }
 }
 }

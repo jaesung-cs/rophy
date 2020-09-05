@@ -2,15 +2,17 @@
 #define ROPHY_VK_VK_PHYSICAL_DEVICE_H_
 
 #include <rophy/vk/vk_object.h>
-#include <rophy/vk/vk_queue.h>
 #include <rophy/utils/printable.h>
-#include <rophy/vk/vk_extension_layers.h>
 
 #include <memory>
 #include <vector>
 #include <string>
 
 #include <vulkan/vulkan.h>
+
+#include <rophy/vk/vk_queue.h>
+#include <rophy/vk/vk_extension_layers.h>
+#include <rophy/vk/vk_surface.h>
 
 namespace rophy
 {
@@ -36,7 +38,8 @@ public:
     return queue_families_.size();
   }
 
-  int GetQueueFamilyIndex(BitFlags type);
+  int GetQueueFamilyIndex(BitFlags type) const;
+  int GetSurfaceSupportedQueueFamilyIndex(Surface surface) const;
 
   operator VkPhysicalDevice ()
   {

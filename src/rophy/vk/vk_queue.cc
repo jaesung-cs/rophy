@@ -12,6 +12,11 @@ QueueImpl::QueueImpl(VkQueue handle)
 }
 
 QueueImpl::~QueueImpl() = default;
+
+void QueueImpl::Print(std::ostream& out) const
+{
+  out << "Queue";
+}
 }
 }
 }
