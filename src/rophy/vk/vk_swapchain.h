@@ -23,7 +23,7 @@ class SwapchainImpl : public vk::Object, public utils::Printable
 public:
   SwapchainImpl() = delete;
 
-  SwapchainImpl(VkDevice device, VkSwapchainKHR surface);
+  SwapchainImpl(VkDevice device, VkSwapchainKHR surface, ImageInfo image_info);
 
   ~SwapchainImpl() override;
 

@@ -9,7 +9,7 @@ namespace vk
 {
 namespace impl
 {
-SwapchainImpl::SwapchainImpl(VkDevice device, VkSwapchainKHR swapchain)
+SwapchainImpl::SwapchainImpl(VkDevice device, VkSwapchainKHR swapchain, ImageInfo image_info)
   : swapchain_(swapchain)
   , device_(device)
 {
@@ -19,7 +19,7 @@ SwapchainImpl::SwapchainImpl(VkDevice device, VkSwapchainKHR swapchain)
   vkGetSwapchainImagesKHR(device, swapchain_, &image_count, vk_images.data());
 
   for (auto vk_image : vk_images)
-    images_.push_back(std::make_shared<impl::ImageImpl>(vk_image));
+    images_.push_back(std::make_shared<impl::ImageImpl>(vk_image, image_info));
 }
 
 SwapchainImpl::~SwapchainImpl() = default;

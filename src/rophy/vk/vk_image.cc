@@ -6,8 +6,8 @@ namespace vk
 {
 namespace impl
 {
-ImageImpl::ImageImpl(VkImage image)
-  : image_(image)
+ImageImpl::ImageImpl(VkImage image, ImageInfo image_info)
+  : image_(image), image_info_(image_info)
 {
 }
 

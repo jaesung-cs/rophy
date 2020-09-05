@@ -18,6 +18,9 @@ namespace vk
 class ImageViewCreator;
 class ShaderModuleCreator;
 class SwapchainCreator;
+class GraphicsPipelineCreator;
+class PipelineLayoutCreator;
+class RenderPassCreator;
 
 namespace impl
 {
@@ -26,6 +29,9 @@ class DeviceImpl : public vk::Object, public utils::Printable
   friend class ImageViewCreator;
   friend class ShaderModuleCreator;
   friend class SwapchainCreator;
+  friend class GraphicsPipelineCreator;
+  friend class PipelineLayoutCreator;
+  friend class RenderPassCreator;
 
 public:
   DeviceImpl() = delete;

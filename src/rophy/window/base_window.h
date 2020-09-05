@@ -59,6 +59,16 @@ public:
     return glsl::vec2(width_, height_);
   }
 
+  auto Width() const
+  {
+    return width_;
+  }
+
+  auto Height() const
+  {
+    return height_;
+  }
+
 protected:
   auto GetWindow() const
   {

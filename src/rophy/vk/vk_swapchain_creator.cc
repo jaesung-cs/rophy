@@ -53,22 +53,6 @@ SwapchainCreator::SwapchainCreator(Device device, Surface surface)
     return VK_PRESENT_MODE_FIFO_KHR;
   } ();
 
-  // Select extent
-  auto extent = [this]() {
-    if (surface_capabilities_.currentExtent.width != UINT32_MAX)
-      return surface_capabilities_.currentExtent;
-    else
-    {
-      // TODO
-      VkExtent2D actual_extent = { 1600, 900 };
-
-      actual_extent.width = std::max(surface_capabilities_.minImageExtent.width, std::min(surface_capabilities_.maxImageExtent.width, actual_extent.width));
-      actual_extent.height = std::max(surface_capabilities_.minImageExtent.height, std::min(surface_capabilities_.maxImageExtent.height, actual_extent.height));
-
-      return actual_extent;
-    }
-  } ();
-
   auto image_count = surface_capabilities_.minImageCount + 1;
   if (surface_capabilities_.maxImageCount > 0 && image_count > surface_capabilities_.maxImageCount)
     image_count = surface_capabilities_.maxImageCount;
@@ -76,7 +60,6 @@ SwapchainCreator::SwapchainCreator(Device device, Surface surface)
   create_info_.minImageCount = image_count;
   create_info_.imageFormat = surface_format.format;
   create_info_.imageColorSpace = surface_format.colorSpace;
-  create_info_.imageExtent = extent;
   create_info_.imageArrayLayers = 1;
   create_info_.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
@@ -94,6 +77,24 @@ SwapchainCreator::SwapchainCreator(Device device, Surface surface)
 
 SwapchainCreator::~SwapchainCreator() = default;
 
+void SwapchainCreator::SetExtent(int width, int height)
+{
+  auto extent = [this, width, height]() {
+    if (surface_capabilities_.currentExtent.width != UINT32_MAX)
+      return surface_capabilities_.currentExtent;
+    else
+    {
+      VkExtent2D actual_extent;
+      actual_extent.width = std::max(surface_capabilities_.minImageExtent.width, std::min(surface_capabilities_.maxImageExtent.width, static_cast<uint32_t>(width)));
+      actual_extent.height = std::max(surface_capabilities_.minImageExtent.height, std::min(surface_capabilities_.maxImageExtent.height, static_cast<uint32_t>(height)));
+
+      return actual_extent;
+    }
+  } ();
+
+  create_info_.imageExtent = extent;
+}
+
 Swapchain SwapchainCreator::Create()
 {
   // Verbose log
@@ -105,7 +106,12 @@ Swapchain SwapchainCreator::Create()
   if ((result = vkCreateSwapchainKHR(*device_, &create_info_, nullptr, &swapchain_handle)) != VK_SUCCESS)
     throw Exception("Failed to create swapchain.", result);
 
-  Swapchain swapchain = std::make_shared<impl::SwapchainImpl>(*device_, swapchain_handle);
+  ImageInfo image_info;
+  image_info.width = create_info_.imageExtent.width;
+  image_info.height = create_info_.imageExtent.height;
+  image_info.format = create_info_.imageFormat;
+
+  Swapchain swapchain = std::make_shared<impl::SwapchainImpl>(*device_, swapchain_handle, image_info);
   device_->AddChildObject(swapchain);
 
   return swapchain;

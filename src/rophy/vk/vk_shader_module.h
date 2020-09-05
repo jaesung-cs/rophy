@@ -29,6 +29,11 @@ public:
 
   void Destroy() override;
 
+  operator VkShaderModule ()
+  {
+    return shader_module_;
+  }
+
 protected:
   void Print(std::ostream& out) const override;
 

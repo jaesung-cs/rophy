@@ -106,6 +106,24 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_shader_module_creator.h">
       <Filter>src\vk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_pipeline.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_pipeline_layout.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_pipeline_layout_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_render_pass.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_render_pass_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc">
@@ -172,6 +190,24 @@
       <Filter>src\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_shader_module_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_pipeline.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_pipeline_layout.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_pipeline_layout_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_render_pass.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_render_pass_creator.cc">
       <Filter>src\vk</Filter>
     </ClCompile>
   </ItemGroup>

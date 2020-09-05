@@ -11,6 +11,9 @@
 #include <rophy/vk/vk_swapchain.h>
 #include <rophy/vk/vk_image_view.h>
 #include <rophy/vk/vk_shader_module.h>
+#include <rophy/vk/vk_pipeline_layout.h>
+#include <rophy/vk/vk_render_pass.h>
+#include <rophy/vk/vk_pipeline.h>
 
 namespace rophy
 {
@@ -35,6 +38,9 @@ private:
   std::vector<vk::ImageView> swapchain_image_views_;
   vk::ShaderModule vertex_shader_module_;
   vk::ShaderModule fragment_shader_module_;
+  vk::PipelineLayout pipeline_layout_;
+  vk::RenderPass render_pass_;
+  vk::Pipeline graphics_pipeline_;
 };
 }
 }

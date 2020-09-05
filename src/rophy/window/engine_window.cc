@@ -9,6 +9,9 @@
 #include <rophy/vk/vk_swapchain_creator.h>
 #include <rophy/vk/vk_image_view_creator.h>
 #include <rophy/vk/vk_shader_module_creator.h>
+#include <rophy/vk/vk_pipeline_layout_creator.h>
+#include <rophy/vk/vk_render_pass_creator.h>
+#include <rophy/vk/vk_graphics_pipeline_creator.h>
 
 namespace rophy
 {
@@ -53,6 +56,7 @@ void EngineWindow::Initialize()
   std::cout << *device_ << std::endl;
 
   vk::SwapchainCreator swapchain_creator{ device_, surface_ };
+  swapchain_creator.SetExtent(Width(), Height());
   swapchain_ = swapchain_creator.Create();
   std::cout << *swapchain_ << std::endl;
 
@@ -73,6 +77,21 @@ void EngineWindow::Initialize()
     vk::ShaderModuleCreator shader_module_creator{ device_, "../../src/rophy/shaders/test.frag.spv" };
     fragment_shader_module_ = shader_module_creator.Create();
   }
+
+  vk::PipelineLayoutCreator pipeline_layout_creator{ device_ };
+  pipeline_layout_ = pipeline_layout_creator.Create();
+
+  vk::RenderPassCreator render_pass_creator{ device_ };
+  render_pass_creator.SetImageFormat(swapchain_->Images()[0]->ImageFormat());
+  render_pass_ = render_pass_creator.Create();
+
+  vk::GraphicsPipelineCreator graphics_pipeline_creator{ device_ };
+  graphics_pipeline_creator.SetVertexShader(vertex_shader_module_);
+  graphics_pipeline_creator.SetFragmentShader(fragment_shader_module_);
+  graphics_pipeline_creator.SetExtent(Width(), Height());
+  graphics_pipeline_creator.SetPipelineLayout(pipeline_layout_);
+  graphics_pipeline_creator.SetRenderPass(render_pass_);
+  graphics_pipeline_ = graphics_pipeline_creator.Create();
 }
 }
 }

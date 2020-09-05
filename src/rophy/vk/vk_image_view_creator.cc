@@ -43,7 +43,7 @@ ImageView ImageViewCreator::Create()
   VkImageView image_view_handle;
   VkResult result;
   if ((result = vkCreateImageView(*device_, &create_info_, nullptr, &image_view_handle)) != VK_SUCCESS)
-    throw vk::Exception("Failed to create instance.", result);
+    throw vk::Exception("Failed to create image view.", result);
 
   auto image_view = std::make_shared<impl::ImageViewImpl>(*device_, image_view_handle);
   device_->AddChildObject(image_view);

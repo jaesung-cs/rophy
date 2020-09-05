@@ -12,6 +12,13 @@ namespace rophy
 {
 namespace vk
 {
+struct ImageInfo
+{
+  int width = 0;
+  int height = 0;
+  VkFormat format = VkFormat::VK_FORMAT_UNDEFINED;
+};
+
 namespace impl
 {
 class ImageImpl : public vk::Object, public utils::Printable
@@ -19,7 +26,7 @@ class ImageImpl : public vk::Object, public utils::Printable
 public:
   ImageImpl() = delete;
 
-  explicit ImageImpl(VkImage image);
+  ImageImpl(VkImage image, ImageInfo image_info);
 
   ~ImageImpl() override;
 
@@ -30,11 +37,18 @@ public:
     return image_;
   }
 
+  auto ImageFormat() const
+  {
+    return image_info_.format;
+  }
+
 protected:
   void Print(std::ostream& out) const override;
 
 private:
   VkImage image_ = nullptr;
+
+  ImageInfo image_info_;
 };
 }
 

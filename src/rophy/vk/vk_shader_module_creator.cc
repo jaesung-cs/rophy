@@ -53,7 +53,7 @@ ShaderModule ShaderModuleCreator::Create()
   VkShaderModule shader_module_handle;
   VkResult result;
   if ((result = vkCreateShaderModule(*device_, &create_info_, nullptr, &shader_module_handle)) != VK_SUCCESS)
-    throw vk::Exception("Failed to create instance.", result);
+    throw vk::Exception("Failed to create shader module.", result);
 
   auto shader_module = std::make_shared<impl::ShaderModuleImpl>(*device_, shader_module_handle);
   device_->AddChildObject(shader_module);

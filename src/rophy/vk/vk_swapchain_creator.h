@@ -22,6 +22,8 @@ public:
 
   ~SwapchainCreator();
 
+  void SetExtent(int width, int height);
+
   Swapchain Create();
 
 protected:
