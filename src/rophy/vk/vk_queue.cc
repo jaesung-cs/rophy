@@ -6,8 +6,8 @@ namespace vk
 {
 namespace impl
 {
-QueueImpl::QueueImpl(VkQueue handle)
-  : queue_(handle)
+QueueImpl::QueueImpl(VkQueue queue)
+  : queue_(queue)
 {
 }
 

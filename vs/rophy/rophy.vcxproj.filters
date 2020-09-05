@@ -82,6 +82,15 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_surface_creator.h">
       <Filter>src\vk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_swapchain.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_swapchain_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_image.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc">
@@ -127,6 +136,15 @@
       <Filter>src\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_surface_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_swapchain.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_swapchain_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_image.cc">
       <Filter>src\vk</Filter>
     </ClCompile>
   </ItemGroup>

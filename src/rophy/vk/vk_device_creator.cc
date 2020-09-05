@@ -122,7 +122,7 @@ Device DeviceCreator::Create()
   if ((result = vkCreateDevice(*physical_device_, &create_info_, nullptr, &device_handle)) != VK_SUCCESS)
     throw vk::Exception("Failed to create device.", result);
 
-  auto device = std::make_shared<impl::DeviceImpl>(device_handle, queue_counts);
+  auto device = std::make_shared<impl::DeviceImpl>(physical_device_, device_handle, queue_counts);
   physical_device_->AddChildObject(device);
 
   return device;

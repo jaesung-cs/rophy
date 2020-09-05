@@ -9,8 +9,9 @@ namespace vk
 {
 namespace impl
 {
-DeviceImpl::DeviceImpl(VkDevice handle, const std::vector<int>& queue_counts)
+DeviceImpl::DeviceImpl(const PhysicalDevice physical_device, VkDevice handle, const std::vector<int>& queue_counts)
   : device_(handle)
+  , physical_device_(physical_device)
 {
   for (int i = 0; i < queue_counts.size(); i++)
   {

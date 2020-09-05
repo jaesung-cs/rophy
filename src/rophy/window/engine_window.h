@@ -5,6 +5,8 @@
 
 #include <rophy/vk/vk_instance.h>
 #include <rophy/vk/vk_device.h>
+#include <rophy/vk/vk_surface.h>
+#include <rophy/vk/vk_swapchain.h>
 
 namespace rophy
 {
@@ -25,6 +27,7 @@ private:
   vk::Instance instance_;
   vk::Device device_;
   vk::Surface surface_;
+  vk::Swapchain swapchain_;
 };
 }
 }

@@ -6,6 +6,7 @@
 #include <rophy/vk/vk_instance_creator.h>
 #include <rophy/vk/vk_device_creator.h>
 #include <rophy/vk/vk_surface_creator.h>
+#include <rophy/vk/vk_swapchain_creator.h>
 
 namespace rophy
 {
@@ -48,8 +49,11 @@ void EngineWindow::Initialize()
   device_creator.AddSurfaceQueue(surface_);
   device_creator.AddGraphicsQueue(2);
   device_ = device_creator.Create();
-
   std::cout << *device_ << std::endl;
+
+  vk::SwapchainCreator swapchain_creator{ device_, surface_ };
+  swapchain_ = swapchain_creator.Create();
+  std::cout << *swapchain_ << std::endl;
 }
 }
 }

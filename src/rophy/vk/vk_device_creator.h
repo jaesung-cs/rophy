@@ -46,7 +46,7 @@ protected:
   void Print(std::ostream& out) const override;
 
 private:
-  PhysicalDevice physical_device_;
+  const PhysicalDevice physical_device_;
 
   VkDeviceCreateInfo create_info_{};
   std::vector<VkDeviceQueueCreateInfo> queue_create_infos_{};

@@ -30,7 +30,7 @@ class QueueImpl : public vk::Object, public utils::Printable
 public:
   QueueImpl() = delete;
 
-  explicit QueueImpl(VkQueue handle);
+  explicit QueueImpl(VkQueue queue);
 
   ~QueueImpl();
 

@@ -9,6 +9,7 @@
 
 #include <rophy/vk/vk_queue.h>
 #include <rophy/utils/printable.h>
+#include <rophy/vk/vk_physical_device.h>
 
 namespace rophy
 {
@@ -21,17 +22,29 @@ class DeviceImpl : public vk::Object, public utils::Printable
 public:
   DeviceImpl() = delete;
 
-  DeviceImpl(VkDevice handle, const std::vector<int>& queue_counts);
+  DeviceImpl(const PhysicalDevice physical_device, VkDevice handle, const std::vector<int>& queue_counts);
 
   ~DeviceImpl();
 
   void Destroy() override;
+
+  operator VkDevice ()
+  {
+    return device_;
+  }
+
+  const auto GetPhysicalDevice() const
+  {
+    return physical_device_;
+  }
 
 protected:
   void Print(std::ostream& out) const override;
 
 private:
   VkDevice device_ = nullptr;
+
+  const PhysicalDevice physical_device_;
 
   std::vector<Queue> queues_;
 };
