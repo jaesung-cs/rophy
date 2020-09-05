@@ -16,8 +16,11 @@ SurfaceImpl::~SurfaceImpl() = default;
 
 void SurfaceImpl::Destroy()
 {
-  vkDestroySurfaceKHR(instance_, surface_, nullptr);
-  surface_ = nullptr;
+  if (surface_ != nullptr)
+  {
+    vkDestroySurfaceKHR(instance_, surface_, nullptr);
+    surface_ = nullptr;
+  }
 }
 }
 }

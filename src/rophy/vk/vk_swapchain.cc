@@ -26,8 +26,11 @@ SwapchainImpl::~SwapchainImpl() = default;
 
 void SwapchainImpl::Destroy()
 {
-  vkDestroySwapchainKHR(device_, swapchain_, nullptr);
-  swapchain_ = nullptr;
+  if (swapchain_ != nullptr)
+  {
+    vkDestroySwapchainKHR(device_, swapchain_, nullptr);
+    swapchain_ = nullptr;
+  }
 }
 
 void SwapchainImpl::Print(std::ostream& out) const

@@ -16,7 +16,11 @@ ImageViewImpl::~ImageViewImpl() = default;
 
 void ImageViewImpl::Destroy()
 {
-  vkDestroyImageView(device_, image_view_, nullptr);
+  if (image_view_ != nullptr)
+  {
+    vkDestroyImageView(device_, image_view_, nullptr);
+    image_view_ = nullptr;
+  }
 }
 
 void ImageViewImpl::Print(std::ostream& out) const

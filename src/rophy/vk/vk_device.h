@@ -16,12 +16,16 @@ namespace rophy
 namespace vk
 {
 class ImageViewCreator;
+class ShaderModuleCreator;
+class SwapchainCreator;
 
 namespace impl
 {
 class DeviceImpl : public vk::Object, public utils::Printable
 {
   friend class ImageViewCreator;
+  friend class ShaderModuleCreator;
+  friend class SwapchainCreator;
 
 public:
   DeviceImpl() = delete;

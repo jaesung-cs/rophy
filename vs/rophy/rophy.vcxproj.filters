@@ -20,6 +20,9 @@
     <Filter Include="src\utils">
       <UniqueIdentifier>{992c8086-41bf-41fa-b5af-967e784b6344}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\shaders">
+      <UniqueIdentifier>{527d2884-3da7-49fe-b78b-9a6c4af334e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\rophy\engine.h">
@@ -97,6 +100,12 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_image_view.h">
       <Filter>src\vk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_shader_module.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_shader_module_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc">
@@ -159,5 +168,19 @@
     <ClCompile Include="..\..\src\rophy\vk\vk_image_view.cc">
       <Filter>src\vk</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_shader_module.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_shader_module_creator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\rophy\shaders\test.frag">
+      <Filter>src\shaders</Filter>
+    </None>
+    <None Include="..\..\src\rophy\shaders\test.vert">
+      <Filter>src\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

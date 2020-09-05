@@ -38,6 +38,8 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_object.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_physical_device.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_queue.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_shader_module.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_shader_module_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_surface.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_surface_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_swapchain.h" />
@@ -60,6 +62,8 @@
     <ClCompile Include="..\..\src\rophy\vk\vk_object.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_physical_device.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_queue.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_shader_module.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_shader_module_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_surface.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_surface_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_swapchain.cc" />
@@ -67,6 +71,10 @@
     <ClCompile Include="..\..\src\rophy\window\base_window.cc" />
     <ClCompile Include="..\..\src\rophy\window\engine_window.cc" />
     <ClCompile Include="..\..\src\rophy\window\window_manager.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\rophy\shaders\test.frag" />
+    <None Include="..\..\src\rophy\shaders\test.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5A4234BA-9B20-4CD4-B9F0-D7BC800EDB93}</ProjectGuid>
@@ -167,6 +175,10 @@
       <AdditionalLibraryDirectories>..\..\lib;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PreBuildEvent>
+      <Command>glslc.exe ../../src/rophy/shaders/test.vert -o ../../src/rophy/shaders/test.vert.spv
+glslc.exe ../../src/rophy/shaders/test.frag -o ../../src/rophy/shaders/test.frag.spv</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -211,6 +223,10 @@
       <AdditionalLibraryDirectories>..\..\lib;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <PreBuildEvent>
+      <Command>glslc.exe ../../src/rophy/shaders/test.vert -o ../../src/rophy/shaders/test.vert.spv
+glslc.exe ../../src/rophy/shaders/test.frag -o ../../src/rophy/shaders/test.frag.spv</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

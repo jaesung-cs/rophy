@@ -8,6 +8,7 @@
 #include <rophy/vk/vk_surface_creator.h>
 #include <rophy/vk/vk_swapchain_creator.h>
 #include <rophy/vk/vk_image_view_creator.h>
+#include <rophy/vk/vk_shader_module_creator.h>
 
 namespace rophy
 {
@@ -25,7 +26,6 @@ EngineWindow::EngineWindow(int width, int height)
 
 EngineWindow::~EngineWindow()
 {
-  instance_ = nullptr;
 }
 
 void EngineWindow::Initialize()
@@ -62,6 +62,16 @@ void EngineWindow::Initialize()
     auto swapchain_image_view = image_view_creator.Create();
     swapchain_image_views_.push_back(swapchain_image_view);
     std::cout << *swapchain_image_view << std::endl;
+  }
+
+  {
+    vk::ShaderModuleCreator shader_module_creator{ device_, "../../src/rophy/shaders/test.vert.spv" };
+    vertex_shader_module_ = shader_module_creator.Create();
+  }
+
+  {
+    vk::ShaderModuleCreator shader_module_creator{ device_, "../../src/rophy/shaders/test.frag.spv" };
+    fragment_shader_module_ = shader_module_creator.Create();
   }
 }
 }

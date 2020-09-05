@@ -106,6 +106,7 @@ Swapchain SwapchainCreator::Create()
     throw Exception("Failed to create swapchain.", result);
 
   Swapchain swapchain = std::make_shared<impl::SwapchainImpl>(*device_, swapchain_handle);
+  device_->AddChildObject(swapchain);
 
   return swapchain;
 }

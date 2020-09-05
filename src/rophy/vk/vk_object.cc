@@ -27,6 +27,8 @@ void Object::DestroyRecursive()
       child->DestroyRecursive();
   }
 
+  children_.clear();
+
   Destroy();
 }
 

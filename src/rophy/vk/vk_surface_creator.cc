@@ -24,6 +24,7 @@ Surface SurfaceCreator::Create()
     throw Exception("Failed to create GLFW window vulkan surface.", result);
 
   Surface surface = std::make_shared<impl::SurfaceImpl>(*instance_, surface_handle);
+  instance_->AddChildObject(surface);
 
   return surface;
 }

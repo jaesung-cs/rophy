@@ -10,6 +10,7 @@
 #include <rophy/vk/vk_surface.h>
 #include <rophy/vk/vk_swapchain.h>
 #include <rophy/vk/vk_image_view.h>
+#include <rophy/vk/vk_shader_module.h>
 
 namespace rophy
 {
@@ -32,6 +33,8 @@ private:
   vk::Surface surface_;
   vk::Swapchain swapchain_;
   std::vector<vk::ImageView> swapchain_image_views_;
+  vk::ShaderModule vertex_shader_module_;
+  vk::ShaderModule fragment_shader_module_;
 };
 }
 }

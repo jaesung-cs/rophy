@@ -44,8 +44,11 @@ void InstanceImpl::Destroy()
     debug_messenger_ = nullptr;
   }
 
-  vkDestroyInstance(instance_, nullptr);
-  instance_ = nullptr;
+  if (instance_ != nullptr)
+  {
+    vkDestroyInstance(instance_, nullptr);
+    instance_ = nullptr;
+  }
 }
 }
 }

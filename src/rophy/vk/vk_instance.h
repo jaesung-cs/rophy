@@ -16,12 +16,14 @@ namespace rophy
 namespace vk
 {
 class InstanceCreator;
+class SurfaceCreator;
 
 namespace impl
 {
 class InstanceImpl : public vk::Object
 {
   friend class InstanceCreator;
+  friend class SurfaceCreator;
 
 public:
   InstanceImpl() = delete;

@@ -29,7 +29,11 @@ DeviceImpl::~DeviceImpl() = default;
 
 void DeviceImpl::Destroy()
 {
-  vkDestroyDevice(device_, nullptr);
+  if (device_ != nullptr)
+  {
+    vkDestroyDevice(device_, nullptr);
+    device_ = nullptr;
+  }
 }
 
 void DeviceImpl::Print(std::ostream& out) const
