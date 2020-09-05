@@ -15,16 +15,20 @@ namespace rophy
 {
 namespace vk
 {
+class ImageViewCreator;
+
 namespace impl
 {
 class DeviceImpl : public vk::Object, public utils::Printable
 {
+  friend class ImageViewCreator;
+
 public:
   DeviceImpl() = delete;
 
   DeviceImpl(const PhysicalDevice physical_device, VkDevice handle, const std::vector<int>& queue_counts);
 
-  ~DeviceImpl();
+  ~DeviceImpl() override;
 
   void Destroy() override;
 

@@ -13,9 +13,14 @@ ImageImpl::ImageImpl(VkImage image)
 
 ImageImpl::~ImageImpl() = default;
 
+void ImageImpl::Destroy()
+{
+  // TODO: delete if created
+}
+
 void ImageImpl::Print(std::ostream& out) const
 {
-  out << "Image";
+  out << "VkImage";
 }
 }
 }

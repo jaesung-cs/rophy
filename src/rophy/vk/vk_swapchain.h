@@ -34,6 +34,11 @@ public:
     return swapchain_;
   }
 
+  const auto& Images() const
+  {
+    return images_;
+  }
+
 protected:
   void Print(std::ostream& out) const override;
 

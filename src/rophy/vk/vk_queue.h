@@ -2,12 +2,11 @@
 #define ROPHY_VK_VK_QUEUE_H_
 
 #include <rophy/vk/vk_object.h>
+#include <rophy/utils/printable.h>
 
 #include <memory>
 
 #include <vulkan/vulkan.h>
-
-#include <rophy/utils/printable.h>
 
 namespace rophy
 {
@@ -32,7 +31,7 @@ public:
 
   explicit QueueImpl(VkQueue queue);
 
-  ~QueueImpl();
+  ~QueueImpl() override;
 
 protected:
   void Print(std::ostream& out) const override;

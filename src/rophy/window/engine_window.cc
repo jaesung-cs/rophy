@@ -7,6 +7,7 @@
 #include <rophy/vk/vk_device_creator.h>
 #include <rophy/vk/vk_surface_creator.h>
 #include <rophy/vk/vk_swapchain_creator.h>
+#include <rophy/vk/vk_image_view_creator.h>
 
 namespace rophy
 {
@@ -54,6 +55,14 @@ void EngineWindow::Initialize()
   vk::SwapchainCreator swapchain_creator{ device_, surface_ };
   swapchain_ = swapchain_creator.Create();
   std::cout << *swapchain_ << std::endl;
+
+  for (auto swapchain_image : swapchain_->Images())
+  {
+    vk::ImageViewCreator image_view_creator{ device_, swapchain_image };
+    auto swapchain_image_view = image_view_creator.Create();
+    swapchain_image_views_.push_back(swapchain_image_view);
+    std::cout << *swapchain_image_view << std::endl;
+  }
 }
 }
 }

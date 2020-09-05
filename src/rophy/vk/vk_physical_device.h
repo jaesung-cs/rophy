@@ -31,7 +31,7 @@ public:
 
   explicit PhysicalDeviceImpl(VkPhysicalDevice handle);
 
-  ~PhysicalDeviceImpl();
+  ~PhysicalDeviceImpl() override;
 
   auto NumQueueFamilies() const
   {
