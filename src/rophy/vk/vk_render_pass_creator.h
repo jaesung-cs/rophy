@@ -36,6 +36,7 @@ private:
   VkAttachmentDescription color_attachment_{};
   VkAttachmentReference color_attachment_ref_{};
   VkSubpassDescription subpass_{};
+  VkSubpassDependency dependency_{};
 };
 }
 }

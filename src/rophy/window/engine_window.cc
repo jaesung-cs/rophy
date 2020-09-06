@@ -144,6 +144,12 @@ void EngineWindow::Draw()
 {
   auto image_index = swapchain_->AcquireNextImage(image_available_semaphore_);
   graphics_queue_->Submit(command_buffers_[image_index], image_available_semaphore_, render_finished_semaphore_);
+  present_queue_->Present(swapchain_, image_index, render_finished_semaphore_);
+}
+
+void EngineWindow::DeviceWaitIdle()
+{
+  vkDeviceWaitIdle(*device_);
 }
 }
 }

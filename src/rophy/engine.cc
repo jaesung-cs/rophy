@@ -29,6 +29,8 @@ void Engine::Run()
     engine_window_->SwapBuffers();
   }
 
+  engine_window_->DeviceWaitIdle();
+
   window_manager_.Destroy();
 }
 }

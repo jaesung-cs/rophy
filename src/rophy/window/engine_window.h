@@ -37,6 +37,8 @@ public:
 
   void Draw();
 
+  void DeviceWaitIdle();
+
 private:
   vk::Instance instance_;
   vk::Device device_;

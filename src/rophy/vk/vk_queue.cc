@@ -42,6 +42,26 @@ void QueueImpl::Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaph
     throw vk::Exception("Failed to submit draw command buffer.", result);
 }
 
+void QueueImpl::Present(Swapchain swapchain, uint32_t image_index, Semaphore wait_semaphore)
+{
+  VkPresentInfoKHR present_info{};
+  present_info.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+
+  VkSemaphore wait_semaphores[] = { *wait_semaphore };
+  present_info.waitSemaphoreCount = 1;
+  present_info.pWaitSemaphores = wait_semaphores;
+
+  VkSwapchainKHR swapchains[] = { *swapchain };
+  present_info.swapchainCount = 1;
+  present_info.pSwapchains = swapchains;
+  present_info.pImageIndices = &image_index;
+  present_info.pResults = nullptr;
+
+  VkResult result;
+  if ((result = vkQueuePresentKHR(queue_, &present_info)) != VK_SUCCESS)
+    throw vk::Exception("Failed to present.", result);
+}
+
 void QueueImpl::Print(std::ostream& out) const
 {
   out << "Queue";
