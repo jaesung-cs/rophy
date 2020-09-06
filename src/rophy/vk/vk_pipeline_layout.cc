@@ -12,7 +12,10 @@ PipelineLayoutImpl::PipelineLayoutImpl(VkDevice device, VkPipelineLayout pipelin
 {
 }
 
-PipelineLayoutImpl::~PipelineLayoutImpl() = default;
+PipelineLayoutImpl::~PipelineLayoutImpl()
+{
+  DestroyThis();
+}
 
 void PipelineLayoutImpl::Destroy()
 {

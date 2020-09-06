@@ -1,5 +1,7 @@
 #include <rophy/vk/vk_object.h>
 
+#include <iostream>
+
 namespace rophy
 {
 namespace vk
@@ -10,26 +12,29 @@ Object::Object()
 
 Object::~Object()
 {
-  DestroyRecursive();
 }
 
 void Object::Destroy()
 {
 }
 
-void Object::DestroyRecursive()
+void Object::DestroyThis()
+{
+  DestroyChildren();
+  Destroy();
+}
+
+void Object::DestroyChildren()
 {
   for (auto weak_child : children_)
   {
     auto child = weak_child.lock();
 
     if (child != nullptr)
-      child->DestroyRecursive();
+      child->DestroyThis();
   }
 
   children_.clear();
-
-  Destroy();
 }
 
 void Object::AddChildObject(std::shared_ptr<Object> child)

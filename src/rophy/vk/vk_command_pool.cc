@@ -12,7 +12,10 @@ CommandPoolImpl::CommandPoolImpl(VkDevice device, VkCommandPool command_pool)
 {
 }
 
-CommandPoolImpl::~CommandPoolImpl() = default;
+CommandPoolImpl::~CommandPoolImpl()
+{
+  DestroyThis();
+}
 
 void CommandPoolImpl::Destroy()
 {

@@ -19,7 +19,6 @@ void WindowManager::Initialize()
   glfwInit();
 
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-  glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 }
 
 void WindowManager::Destroy()

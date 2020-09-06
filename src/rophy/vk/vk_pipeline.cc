@@ -12,7 +12,10 @@ PipelineImpl::PipelineImpl(VkDevice device, VkPipeline pipeline)
 {
 }
 
-PipelineImpl::~PipelineImpl() = default;
+PipelineImpl::~PipelineImpl()
+{
+  DestroyThis();
+}
 
 void PipelineImpl::Destroy()
 {

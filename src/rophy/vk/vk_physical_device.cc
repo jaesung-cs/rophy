@@ -25,7 +25,10 @@ PhysicalDeviceImpl::PhysicalDeviceImpl(VkPhysicalDevice handle)
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device_, &queue_family_count, queue_families_.data());
 }
 
-PhysicalDeviceImpl::~PhysicalDeviceImpl() = default;
+PhysicalDeviceImpl::~PhysicalDeviceImpl()
+{
+  DestroyThis();
+}
 
 int PhysicalDeviceImpl::GetQueueFamilyIndex(BitFlags type) const
 {

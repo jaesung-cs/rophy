@@ -15,13 +15,13 @@ public:
 
   virtual ~Object();
 
-  virtual void Destroy();
+  void DestroyThis();
 
 protected:
-  void AddChildObject(std::shared_ptr<Object> child);
+  virtual void Destroy();
 
-private:
-  void DestroyRecursive();
+  void AddChildObject(std::shared_ptr<Object> child);
+  void DestroyChildren();
 
 private:
   std::vector<std::weak_ptr<Object>> children_;

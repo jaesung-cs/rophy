@@ -12,7 +12,10 @@ SurfaceImpl::SurfaceImpl(VkInstance instance, VkSurfaceKHR surface)
 {
 }
 
-SurfaceImpl::~SurfaceImpl() = default;
+SurfaceImpl::~SurfaceImpl()
+{
+  DestroyThis();
+}
 
 void SurfaceImpl::Destroy()
 {

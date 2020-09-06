@@ -12,7 +12,10 @@ ImageViewImpl::ImageViewImpl(VkDevice device, VkImageView image_view)
 {
 }
 
-ImageViewImpl::~ImageViewImpl() = default;
+ImageViewImpl::~ImageViewImpl()
+{
+  DestroyThis();
+}
 
 void ImageViewImpl::Destroy()
 {

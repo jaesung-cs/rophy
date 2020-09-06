@@ -12,7 +12,10 @@ SemaphoreImpl::SemaphoreImpl(VkDevice device, VkSemaphore semaphore)
 {
 }
 
-SemaphoreImpl::~SemaphoreImpl() = default;
+SemaphoreImpl::~SemaphoreImpl()
+{
+  DestroyThis();
+}
 
 void SemaphoreImpl::Destroy()
 {

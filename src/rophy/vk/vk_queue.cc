@@ -16,7 +16,10 @@ QueueImpl::QueueImpl(VkQueue queue)
 {
 }
 
-QueueImpl::~QueueImpl() = default;
+QueueImpl::~QueueImpl()
+{
+  DestroyThis();
+}
 
 void QueueImpl::Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaphore wait_semaphore, Semaphore signal_semaphore, Fence fence)
 {

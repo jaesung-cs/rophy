@@ -12,7 +12,10 @@ FenceImpl::FenceImpl(VkDevice device, VkFence fence)
 {
 }
 
-FenceImpl::~FenceImpl() = default;
+FenceImpl::~FenceImpl()
+{
+  DestroyThis();
+}
 
 void FenceImpl::Destroy()
 {

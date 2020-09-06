@@ -12,7 +12,10 @@ RenderPassImpl::RenderPassImpl(VkDevice device, VkRenderPass render_pass)
 {
 }
 
-RenderPassImpl::~RenderPassImpl() = default;
+RenderPassImpl::~RenderPassImpl()
+{
+  DestroyThis();
+}
 
 void RenderPassImpl::Destroy()
 {

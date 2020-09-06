@@ -15,7 +15,10 @@ CommandBufferImpl::CommandBufferImpl(VkDevice device, VkCommandPool command_pool
 {
 }
 
-CommandBufferImpl::~CommandBufferImpl() = default;
+CommandBufferImpl::~CommandBufferImpl()
+{
+  DestroyThis();
+}
 
 void CommandBufferImpl::Destroy()
 {

@@ -11,7 +11,10 @@ ImageImpl::ImageImpl(VkImage image, ImageInfo image_info)
 {
 }
 
-ImageImpl::~ImageImpl() = default;
+ImageImpl::~ImageImpl()
+{
+  DestroyThis();
+}
 
 void ImageImpl::Destroy()
 {

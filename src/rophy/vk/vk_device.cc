@@ -25,7 +25,10 @@ DeviceImpl::DeviceImpl(const PhysicalDevice physical_device, VkDevice handle, co
   }
 }
 
-DeviceImpl::~DeviceImpl() = default;
+DeviceImpl::~DeviceImpl()
+{
+  DestroyThis();
+}
 
 void DeviceImpl::Destroy()
 {

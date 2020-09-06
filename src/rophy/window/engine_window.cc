@@ -17,6 +17,7 @@
 #include <rophy/vk/vk_command_buffer_allocator.h>
 #include <rophy/vk/vk_semaphore_creator.h>
 #include <rophy/vk/vk_fence_creator.h>
+#include <rophy/vk/vk_exception.h>
 
 namespace rophy
 {
@@ -151,11 +152,104 @@ void EngineWindow::Initialize()
   images_in_flight_.resize(swapchain_image_views_.size());
 }
 
+void EngineWindow::Resize(int width, int height)
+{
+  resized_ = true;
+
+  RecreateSwapchain();
+}
+
+void EngineWindow::RecreateSwapchain()
+{
+  DeviceWaitIdle();
+
+  swapchain_framebuffers_.clear();
+  command_buffers_.clear();
+  graphics_pipeline_.reset();
+  pipeline_layout_.reset();
+  render_pass_.reset();
+  swapchain_image_views_.clear();
+  swapchain_.reset();
+
+
+  vk::SwapchainCreator swapchain_creator{ device_, surface_ };
+  swapchain_creator.SetExtent(Width(), Height());
+  swapchain_ = swapchain_creator.Create();
+  std::cout << *swapchain_ << std::endl;
+
+  for (auto swapchain_image : swapchain_->Images())
+  {
+    vk::ImageViewCreator image_view_creator{ device_, swapchain_image };
+    auto swapchain_image_view = image_view_creator.Create();
+    swapchain_image_views_.push_back(swapchain_image_view);
+    std::cout << *swapchain_image_view << std::endl;
+  }
+
+  vk::PipelineLayoutCreator pipeline_layout_creator{ device_ };
+  pipeline_layout_ = pipeline_layout_creator.Create();
+
+  vk::RenderPassCreator render_pass_creator{ device_ };
+  render_pass_creator.SetImageFormat(swapchain_->Images()[0]->ImageFormat());
+  render_pass_ = render_pass_creator.Create();
+
+  vk::GraphicsPipelineCreator graphics_pipeline_creator{ device_ };
+  graphics_pipeline_creator.SetVertexShader(vertex_shader_module_);
+  graphics_pipeline_creator.SetFragmentShader(fragment_shader_module_);
+  graphics_pipeline_creator.SetExtent(Width(), Height());
+  graphics_pipeline_creator.SetPipelineLayout(pipeline_layout_);
+  graphics_pipeline_creator.SetRenderPass(render_pass_);
+  graphics_pipeline_ = graphics_pipeline_creator.Create();
+
+  for (auto image_view : swapchain_image_views_)
+  {
+    vk::FramebufferCreator framebuffer_creator{ device_ };
+    framebuffer_creator.SetRenderPass(render_pass_);
+    framebuffer_creator.AddImageView(image_view);
+    framebuffer_creator.SetExtent(Width(), Height());
+    auto swapchain_framebuffer = framebuffer_creator.Create();
+    swapchain_framebuffers_.push_back(swapchain_framebuffer);
+  }
+
+  vk::CommandBufferAllocator command_buffer_allocator{ device_, command_pool_ };
+  command_buffers_ = command_buffer_allocator.Allocate(static_cast<int>(swapchain_framebuffers_.size()));
+  for (int i = 0; i < command_buffers_.size(); i++)
+  {
+    auto command_buffer = command_buffers_[i];
+
+    command_buffer->Begin();
+    command_buffer->CmdBeginRenderPass(render_pass_, swapchain_framebuffers_[i], Width(), Height());
+    command_buffer->CmdBindGraphicsPipeline(graphics_pipeline_);
+    command_buffer->CmdDraw(3, 1, 0, 0);
+    command_buffer->CmdEndRenderPass();
+    command_buffer->End();
+  }
+}
+
 void EngineWindow::Draw()
 {
   in_flight_fences_[current_frame_]->Wait();
 
-  auto image_index = swapchain_->AcquireNextImage(image_available_semaphores_[current_frame_]);
+  uint32_t image_index = -1;
+  try
+  {
+    image_index = swapchain_->AcquireNextImage(image_available_semaphores_[current_frame_]);
+  }
+  catch (const vk::Exception& e)
+  {
+    auto error_code = e.ErrorCode();
+
+    switch (error_code)
+    {
+    case VK_ERROR_OUT_OF_DATE_KHR:
+      resized_ = false;
+      RecreateSwapchain();
+      return;
+    case VK_SUBOPTIMAL_KHR:
+      return;
+    default:
+      throw e;
+    }
+  }
 
   // Check if a previous frame is using this image (i.e. there is its fence to wait on)
   if (images_in_flight_[image_index] != nullptr)
@@ -167,7 +261,22 @@ void EngineWindow::Draw()
   in_flight_fences_[current_frame_]->Reset();
 
   graphics_queue_->Submit(command_buffers_[image_index], image_available_semaphores_[current_frame_], render_finished_semaphores_[current_frame_], in_flight_fences_[current_frame_]);
-  present_queue_->Present(swapchain_, image_index, render_finished_semaphores_[current_frame_]);
+
+  try
+  {
+    present_queue_->Present(swapchain_, image_index, render_finished_semaphores_[current_frame_]);
+  }
+  catch (const vk::Exception& e)
+  {
+    auto error_code = e.ErrorCode();
+    if (error_code == VK_ERROR_OUT_OF_DATE_KHR || error_code == VK_SUBOPTIMAL_KHR || resized_)
+    {
+      resized_ = false;
+      RecreateSwapchain();
+    }
+    else
+      throw e;
+  }
 
   current_frame_ = (current_frame_ + 1) % 2;
 }

@@ -35,12 +35,17 @@ public:
   virtual ~EngineWindow() override;
 
   void Initialize() override;
+  void Resize(int width, int height) override;
 
   void Draw();
 
   void DeviceWaitIdle();
 
 private:
+  void RecreateSwapchain();
+
+  bool resized_ = false;
+
   vk::Instance instance_;
   vk::Device device_;
   vk::Queue present_queue_;

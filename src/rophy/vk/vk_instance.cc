@@ -34,7 +34,10 @@ InstanceImpl::InstanceImpl(VkInstance instance)
   }
 }
 
-InstanceImpl::~InstanceImpl() = default;
+InstanceImpl::~InstanceImpl()
+{
+  DestroyThis();
+}
 
 void InstanceImpl::Destroy()
 {

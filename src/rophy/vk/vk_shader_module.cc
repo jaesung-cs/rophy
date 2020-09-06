@@ -12,7 +12,10 @@ ShaderModuleImpl::ShaderModuleImpl(VkDevice device, VkShaderModule shader_module
 {
 }
 
-ShaderModuleImpl::~ShaderModuleImpl() = default;
+ShaderModuleImpl::~ShaderModuleImpl()
+{
+  DestroyThis();
+}
 
 void ShaderModuleImpl::Destroy()
 {

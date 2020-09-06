@@ -15,7 +15,10 @@ FramebufferImpl::FramebufferImpl(VkDevice device, VkFramebuffer framebuffer)
 {
 }
 
-FramebufferImpl::~FramebufferImpl() = default;
+FramebufferImpl::~FramebufferImpl()
+{
+  DestroyThis();
+}
 
 void FramebufferImpl::Destroy()
 {

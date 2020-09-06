@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iomanip>
 
+#include <rophy/vk/vk_exception.h>
+
 namespace rophy
 {
 namespace vk
@@ -22,7 +24,10 @@ SwapchainImpl::SwapchainImpl(VkDevice device, VkSwapchainKHR swapchain, ImageInf
     images_.push_back(std::make_shared<impl::ImageImpl>(vk_image, image_info));
 }
 
-SwapchainImpl::~SwapchainImpl() = default;
+SwapchainImpl::~SwapchainImpl()
+{
+  DestroyThis();
+}
 
 void SwapchainImpl::Destroy()
 {
@@ -35,8 +40,11 @@ void SwapchainImpl::Destroy()
 
 uint32_t SwapchainImpl::AcquireNextImage(Semaphore semaphore)
 {
+  VkResult result;
   uint32_t image_index;
-  vkAcquireNextImageKHR(device_, swapchain_, UINT64_MAX, *semaphore, VK_NULL_HANDLE, &image_index);
+  if ((result = vkAcquireNextImageKHR(device_, swapchain_, UINT64_MAX, *semaphore, VK_NULL_HANDLE, &image_index)) != VK_SUCCESS)
+    throw vk::Exception("Failed to present swap chain image.", result);
+
   return image_index;
 }
 
