@@ -5,266 +5,281 @@
     <Filter Include="src">
       <UniqueIdentifier>{96d2f099-5779-484e-bef7-23d550d68723}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\vk">
-      <UniqueIdentifier>{1d2328d7-a5f6-418d-9ad5-d7f95a5e5b77}</UniqueIdentifier>
+    <Filter Include="src\rophy">
+      <UniqueIdentifier>{846fb91a-f0e0-494a-8ce1-b13aee663306}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\window">
-      <UniqueIdentifier>{4b7145d6-a652-4faf-8274-fae9c40e1052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\math">
-      <UniqueIdentifier>{8b36eed6-b618-4b94-9bb1-2516a6bad989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\glsl">
+    <Filter Include="src\rophy\glsl">
       <UniqueIdentifier>{bfc2cb58-b7cf-4d06-bd6d-f828bab45f86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\utils">
-      <UniqueIdentifier>{992c8086-41bf-41fa-b5af-967e784b6344}</UniqueIdentifier>
+    <Filter Include="src\rophy\math">
+      <UniqueIdentifier>{8b36eed6-b618-4b94-9bb1-2516a6bad989}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\shaders">
+    <Filter Include="src\rophy\shaders">
       <UniqueIdentifier>{527d2884-3da7-49fe-b78b-9a6c4af334e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\rophy\utils">
+      <UniqueIdentifier>{992c8086-41bf-41fa-b5af-967e784b6344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rophy\vk">
+      <UniqueIdentifier>{1d2328d7-a5f6-418d-9ad5-d7f95a5e5b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rophy\window">
+      <UniqueIdentifier>{4b7145d6-a652-4faf-8274-fae9c40e1052}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\rophy\engine.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\rophy\window\base_window.h">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\window\engine_window.h">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_instance.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\window\window_manager.h">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\math\matrix.h">
-      <Filter>src\math</Filter>
+      <Filter>src\rophy\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\math\vector.h">
-      <Filter>src\math</Filter>
+      <Filter>src\rophy\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\glsl\vec.h">
-      <Filter>src\glsl</Filter>
+      <Filter>src\rophy\glsl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\glsl\mat.h">
-      <Filter>src\glsl</Filter>
+      <Filter>src\rophy\glsl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_exception.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_extension_layers.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_instance_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_physical_device.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\utils\printable.h">
-      <Filter>src\utils</Filter>
+      <Filter>src\rophy\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_device.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_device_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_object.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_queue.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_surface.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_surface_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_swapchain.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_swapchain_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_image.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_image_view_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_image_view.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_shader_module.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_shader_module_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_pipeline.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_pipeline_layout.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_pipeline_layout_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_render_pass.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_render_pass_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_command_pool.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_command_pool_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_command_buffer.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_command_buffer_allocator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_semaphore.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\rophy\vk\vk_semaphore_creator.h">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\engine.h">
+      <Filter>src\rophy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_fence.h">
+      <Filter>src\rophy\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_fence_creator.h">
+      <Filter>src\rophy\vk</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\rophy\engine.cc">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\rophy\main.cc">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\rophy\window\base_window.cc">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\window\engine_window.cc">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_instance.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\window\window_manager.cc">
-      <Filter>src\window</Filter>
+      <Filter>src\rophy\window</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_extension_layers.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_instance_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_physical_device.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_device.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_device_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_object.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_queue.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_surface.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_surface_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_swapchain.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_swapchain_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_image.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_image_view_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_image_view.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_shader_module.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_shader_module_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_graphics_pipeline_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_pipeline.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_pipeline_layout.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_pipeline_layout_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_render_pass.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_render_pass_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_pool.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_pool_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_buffer.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_buffer_allocator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_semaphore.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_semaphore_creator.cc">
-      <Filter>src\vk</Filter>
+      <Filter>src\rophy\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\engine.cc">
+      <Filter>src\rophy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\main.cc">
+      <Filter>src\rophy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_fence.cc">
+      <Filter>src\rophy\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_fence_creator.cc">
+      <Filter>src\rophy\vk</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\rophy\shaders\test.frag">
-      <Filter>src\shaders</Filter>
+      <Filter>src\rophy\shaders</Filter>
     </None>
     <None Include="..\..\src\rophy\shaders\test.vert">
-      <Filter>src\shaders</Filter>
+      <Filter>src\rophy\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

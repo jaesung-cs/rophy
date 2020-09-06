@@ -23,7 +23,7 @@ class SemaphoreImpl : public vk::Object, public utils::Printable
 public:
   SemaphoreImpl() = delete;
 
-  explicit SemaphoreImpl(VkDevice device, VkSemaphore semaphore_);
+  explicit SemaphoreImpl(VkDevice device, VkSemaphore semaphore);
 
   ~SemaphoreImpl() override;
 

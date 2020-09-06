@@ -25,6 +25,7 @@ class FramebufferCreator;
 class CommandPoolCreator;
 class CommandBufferAllocator;
 class SemaphoreCreator;
+class FenceCreator;
 
 namespace impl
 {
@@ -40,6 +41,7 @@ class DeviceImpl : public vk::Object, public utils::Printable
   friend class CommandPoolCreator;
   friend class CommandBufferAllocator;
   friend class SemaphoreCreator;
+  friend class FenceCreator;
 
 public:
   DeviceImpl() = delete;

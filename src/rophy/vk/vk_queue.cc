@@ -18,7 +18,7 @@ QueueImpl::QueueImpl(VkQueue queue)
 
 QueueImpl::~QueueImpl() = default;
 
-void QueueImpl::Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaphore wait_semaphore, Semaphore signal_semaphore)
+void QueueImpl::Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaphore wait_semaphore, Semaphore signal_semaphore, Fence fence)
 {
   VkSubmitInfo submit_info{};
   submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -38,7 +38,7 @@ void QueueImpl::Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaph
   submit_info.pSignalSemaphores = signal_semaphores;
 
   VkResult result;
-  if ((result = vkQueueSubmit(queue_, 1, &submit_info, VK_NULL_HANDLE)) != VK_SUCCESS)
+  if ((result = vkQueueSubmit(queue_, 1, &submit_info, *fence)) != VK_SUCCESS)
     throw vk::Exception("Failed to submit draw command buffer.", result);
 }
 

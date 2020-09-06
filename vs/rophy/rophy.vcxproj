@@ -32,6 +32,8 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_command_pool_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_exception.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_extension_layers.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_fence.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_fence_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_framebuffer_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_pipeline.h" />
@@ -70,6 +72,8 @@
     <ClCompile Include="..\..\src\rophy\vk\vk_command_pool.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_command_pool_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_extension_layers.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_fence.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_fence_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_framebuffer_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_pipeline.cc" />

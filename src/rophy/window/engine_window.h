@@ -19,6 +19,7 @@
 #include <rophy/vk/vk_command_pool.h>
 #include <rophy/vk/vk_command_buffer.h>
 #include <rophy/vk/vk_semaphore.h>
+#include <rophy/vk/vk_fence.h>
 
 namespace rophy
 {
@@ -55,8 +56,12 @@ private:
   std::vector<vk::Framebuffer> swapchain_framebuffers_;
   vk::CommandPool command_pool_;
   std::vector<vk::CommandBuffer> command_buffers_;
-  vk::Semaphore image_available_semaphore_;
-  vk::Semaphore render_finished_semaphore_;
+  vk::Semaphore image_available_semaphores_[2];
+  vk::Semaphore render_finished_semaphores_[2];
+  vk::Fence in_flight_fences_[2];
+  std::vector<vk::Fence> images_in_flight_;
+
+  int current_frame_ = 0;
 };
 }
 }

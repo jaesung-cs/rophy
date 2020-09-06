@@ -9,6 +9,7 @@
 #include <vulkan/vulkan.h>
 
 #include <rophy/vk/vk_semaphore.h>
+#include <rophy/vk/vk_fence.h>
 #include <rophy/vk/vk_swapchain.h>
 
 namespace rophy
@@ -41,7 +42,7 @@ public:
 
   ~QueueImpl() override;
 
-  void Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaphore wait_semaphore, Semaphore signal_semaphore);
+  void Submit(std::shared_ptr<CommandBufferImpl> command_buffer, Semaphore wait_semaphore, Semaphore signal_semaphore, Fence fence);
   void Present(Swapchain swapchain, uint32_t image_index, Semaphore wait_semaphore);
 
 protected:

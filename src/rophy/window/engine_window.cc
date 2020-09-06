@@ -16,6 +16,7 @@
 #include <rophy/vk/vk_command_pool_creator.h>
 #include <rophy/vk/vk_command_buffer_allocator.h>
 #include <rophy/vk/vk_semaphore_creator.h>
+#include <rophy/vk/vk_fence_creator.h>
 
 namespace rophy
 {
@@ -129,22 +130,46 @@ void EngineWindow::Initialize()
     command_buffer->End();
   }
 
+  for (int i = 0; i < 2; i++)
   {
     vk::SemaphoreCreator semaphore_creator{ device_ };
-    image_available_semaphore_ = semaphore_creator.Create();
+    image_available_semaphores_[i] = semaphore_creator.Create();
   }
 
+  for (int i = 0; i < 2; i++)
   {
     vk::SemaphoreCreator semaphore_creator{ device_ };
-    render_finished_semaphore_ = semaphore_creator.Create();
+    render_finished_semaphores_[i] = semaphore_creator.Create();
   }
+
+  for (int i = 0; i < 2; i++)
+  {
+    vk::FenceCreator fence_creator{ device_ };
+    in_flight_fences_[i] = fence_creator.Create();
+  }
+
+  images_in_flight_.resize(swapchain_image_views_.size());
 }
 
 void EngineWindow::Draw()
 {
-  auto image_index = swapchain_->AcquireNextImage(image_available_semaphore_);
-  graphics_queue_->Submit(command_buffers_[image_index], image_available_semaphore_, render_finished_semaphore_);
-  present_queue_->Present(swapchain_, image_index, render_finished_semaphore_);
+  in_flight_fences_[current_frame_]->Wait();
+
+  auto image_index = swapchain_->AcquireNextImage(image_available_semaphores_[current_frame_]);
+
+  // Check if a previous frame is using this image (i.e. there is its fence to wait on)
+  if (images_in_flight_[image_index] != nullptr)
+    images_in_flight_[image_index]->Wait();
+
+  // Mark the image as now being in use by this frame
+  images_in_flight_[image_index] = in_flight_fences_[current_frame_];
+
+  in_flight_fences_[current_frame_]->Reset();
+
+  graphics_queue_->Submit(command_buffers_[image_index], image_available_semaphores_[current_frame_], render_finished_semaphores_[current_frame_], in_flight_fences_[current_frame_]);
+  present_queue_->Present(swapchain_, image_index, render_finished_semaphores_[current_frame_]);
+
+  current_frame_ = (current_frame_ + 1) % 2;
 }
 
 void EngineWindow::DeviceWaitIdle()
