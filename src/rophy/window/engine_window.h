@@ -44,6 +44,21 @@ public:
 private:
   void RecreateSwapchain();
 
+  void CreateInstance();
+  void CreateSurface();
+  void CreateDevice();
+  void InitializeQueues();
+  void CreateSwapchain();
+  void CreateSwapchainImageViews();
+  void CreateShaderModules();
+  void CreatePipelineLayout();
+  void CreateRenderPass();
+  void CreateGraphicsPipeline();
+  void CreateSwapchainFramebuffers();
+  void CreateCommandPool();
+  void AllocateCommandBuffers();
+  void InitializeCommandBuffers();
+
   bool resized_ = false;
 
   vk::Instance instance_;

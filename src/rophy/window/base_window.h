@@ -25,7 +25,7 @@ public:
 
   bool IsActivated() const noexcept
   {
-    return window_ != nullptr;
+    return glfw_window_ != nullptr;
   }
 
   bool ShouldClose() const;
@@ -70,13 +70,13 @@ public:
   }
 
 protected:
-  auto GetWindow() const
+  auto GetGlfwWindow() const
   {
-    return window_;
+    return glfw_window_;
   }
 
 private:
-  GLFWwindow* window_ = nullptr;
+  GLFWwindow* glfw_window_ = nullptr;
 
   // Window info
   int x_ = 100;

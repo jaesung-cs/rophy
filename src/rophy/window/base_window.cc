@@ -37,39 +37,39 @@ BaseWindow::~BaseWindow()
 
 void BaseWindow::Create()
 {
-  window_ = glfwCreateWindow(width_, height_, title_.c_str(), nullptr, nullptr);
+  glfw_window_ = glfwCreateWindow(width_, height_, title_.c_str(), nullptr, nullptr);
 
-  glfwSetWindowPos(window_, x_, y_);
+  glfwSetWindowPos(glfw_window_, x_, y_);
 
   // Register callbacks
-  glfwSetWindowUserPointer(window_, this);
-  glfwSetWindowSizeCallback(window_, ResizeCallback);
-  glfwSetKeyCallback(window_, KeyCallback);
+  glfwSetWindowUserPointer(glfw_window_, this);
+  glfwSetWindowSizeCallback(glfw_window_, ResizeCallback);
+  glfwSetKeyCallback(glfw_window_, KeyCallback);
 
   Initialize();
 }
 
 void BaseWindow::DestroyWindow()
 {
-  glfwDestroyWindow(window_);
-  window_ = nullptr;
+  glfwDestroyWindow(glfw_window_);
+  glfw_window_ = nullptr;
 }
 
 bool BaseWindow::ShouldClose() const
 {
-  return glfwWindowShouldClose(window_);
+  return glfwWindowShouldClose(glfw_window_);
 }
 
 void BaseWindow::SwapBuffers()
 {
-  glfwSwapBuffers(window_);
+  glfwSwapBuffers(glfw_window_);
 }
 
 void BaseWindow::SetTitle(const std::string& title)
 {
   if (IsActivated())
   {
-    glfwSetWindowTitle(window_, title.c_str());
+    glfwSetWindowTitle(glfw_window_, title.c_str());
   }
 
   title_ = title;
