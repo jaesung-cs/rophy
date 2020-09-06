@@ -7,6 +7,7 @@
 #include <vulkan/vulkan.h>
 
 #include <rophy/vk/vk_image.h>
+#include <rophy/vk/vk_semaphore.h>
 
 namespace rophy
 {
@@ -38,6 +39,8 @@ public:
   {
     return images_;
   }
+
+  uint32_t AcquireNextImage(Semaphore semaphore);
 
 protected:
   void Print(std::ostream& out) const override;

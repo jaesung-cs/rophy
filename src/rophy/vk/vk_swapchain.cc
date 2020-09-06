@@ -33,6 +33,13 @@ void SwapchainImpl::Destroy()
   }
 }
 
+uint32_t SwapchainImpl::AcquireNextImage(Semaphore semaphore)
+{
+  uint32_t image_index;
+  vkAcquireNextImageKHR(device_, swapchain_, UINT64_MAX, *semaphore, VK_NULL_HANDLE, &image_index);
+  return image_index;
+}
+
 void SwapchainImpl::Print(std::ostream& out) const
 {
   out

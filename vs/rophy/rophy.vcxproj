@@ -50,6 +50,8 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_queue.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_render_pass.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_render_pass_creator.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_semaphore.h" />
+    <ClInclude Include="..\..\src\rophy\vk\vk_semaphore_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_shader_module.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_shader_module_creator.h" />
     <ClInclude Include="..\..\src\rophy\vk\vk_surface.h" />
@@ -86,6 +88,8 @@
     <ClCompile Include="..\..\src\rophy\vk\vk_queue.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_render_pass.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_render_pass_creator.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_semaphore.cc" />
+    <ClCompile Include="..\..\src\rophy\vk\vk_semaphore_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_shader_module.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_shader_module_creator.cc" />
     <ClCompile Include="..\..\src\rophy\vk\vk_surface.cc" />

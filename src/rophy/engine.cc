@@ -24,6 +24,8 @@ void Engine::Run()
   {
     window_manager_.PollEvents();
 
+    engine_window_->Draw();
+
     engine_window_->SwapBuffers();
   }
 

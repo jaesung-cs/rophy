@@ -142,6 +142,12 @@
     <ClInclude Include="..\..\src\rophy\vk\vk_command_buffer_allocator.h">
       <Filter>src\vk</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_semaphore.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\rophy\vk\vk_semaphore_creator.h">
+      <Filter>src\vk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\rophy\engine.cc">
@@ -244,6 +250,12 @@
       <Filter>src\vk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rophy\vk\vk_command_buffer_allocator.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_semaphore.cc">
+      <Filter>src\vk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rophy\vk\vk_semaphore_creator.cc">
       <Filter>src\vk</Filter>
     </ClCompile>
   </ItemGroup>

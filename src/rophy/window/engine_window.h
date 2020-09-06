@@ -7,6 +7,7 @@
 
 #include <rophy/vk/vk_instance.h>
 #include <rophy/vk/vk_device.h>
+#include <rophy/vk/vk_queue.h>
 #include <rophy/vk/vk_surface.h>
 #include <rophy/vk/vk_swapchain.h>
 #include <rophy/vk/vk_image_view.h>
@@ -17,6 +18,7 @@
 #include <rophy/vk/vk_framebuffer.h>
 #include <rophy/vk/vk_command_pool.h>
 #include <rophy/vk/vk_command_buffer.h>
+#include <rophy/vk/vk_semaphore.h>
 
 namespace rophy
 {
@@ -33,9 +35,13 @@ public:
 
   void Initialize() override;
 
+  void Draw();
+
 private:
   vk::Instance instance_;
   vk::Device device_;
+  vk::Queue present_queue_;
+  vk::Queue graphics_queue_;
   vk::Surface surface_;
   vk::Swapchain swapchain_;
   std::vector<vk::ImageView> swapchain_image_views_;
@@ -47,6 +53,8 @@ private:
   std::vector<vk::Framebuffer> swapchain_framebuffers_;
   vk::CommandPool command_pool_;
   std::vector<vk::CommandBuffer> command_buffers_;
+  vk::Semaphore image_available_semaphore_;
+  vk::Semaphore render_finished_semaphore_;
 };
 }
 }

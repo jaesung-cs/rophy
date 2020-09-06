@@ -15,6 +15,7 @@
 #include <rophy/vk/vk_framebuffer_creator.h>
 #include <rophy/vk/vk_command_pool_creator.h>
 #include <rophy/vk/vk_command_buffer_allocator.h>
+#include <rophy/vk/vk_semaphore_creator.h>
 
 namespace rophy
 {
@@ -57,6 +58,9 @@ void EngineWindow::Initialize()
   device_creator.AddGraphicsQueue();
   device_ = device_creator.Create();
   std::cout << *device_ << std::endl;
+
+  present_queue_ = device_->GetQueue(0);
+  graphics_queue_ = device_->GetQueue(1);
 
   vk::SwapchainCreator swapchain_creator{ device_, surface_ };
   swapchain_creator.SetExtent(Width(), Height());
@@ -111,7 +115,7 @@ void EngineWindow::Initialize()
   command_pool_ = command_pool_creator.Create();
 
   vk::CommandBufferAllocator command_buffer_allocator{ device_, command_pool_ };
-  command_buffers_ = command_buffer_allocator.Allocate(swapchain_framebuffers_.size());
+  command_buffers_ = command_buffer_allocator.Allocate(static_cast<int>(swapchain_framebuffers_.size()));
 
   for (int i = 0; i < command_buffers_.size(); i++)
   {
@@ -124,6 +128,22 @@ void EngineWindow::Initialize()
     command_buffer->CmdEndRenderPass();
     command_buffer->End();
   }
+
+  {
+    vk::SemaphoreCreator semaphore_creator{ device_ };
+    image_available_semaphore_ = semaphore_creator.Create();
+  }
+
+  {
+    vk::SemaphoreCreator semaphore_creator{ device_ };
+    render_finished_semaphore_ = semaphore_creator.Create();
+  }
+}
+
+void EngineWindow::Draw()
+{
+  auto image_index = swapchain_->AcquireNextImage(image_available_semaphore_);
+  graphics_queue_->Submit(command_buffers_[image_index], image_available_semaphore_, render_finished_semaphore_);
 }
 }
 }
